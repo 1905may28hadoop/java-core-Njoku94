@@ -1,5 +1,7 @@
 package com.revature.eval.java.core;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +17,24 @@ public class EvaluationService {
 	 */
 	public String acronym(String phrase) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		char[] ch = new char[phrase.length()];
+		String acro = "";
+		ch[0] = phrase.charAt(0);
+		for(int i = 1; i< phrase.length(); i++) {
+			if(phrase.charAt(i) == ' '  || phrase.charAt(i) == '-')
+			{
+		    ch[i] = phrase.charAt(i + 1);
+	    }
+	    else {
+	    	ch[i]= ' ';
+	    }
+			String replacement;
+			String regex;
+			
+		acro = new String(ch).replaceAll("\\s"," ").trim();
+		
+	}
+		return acro;
 	}
 
 	/**
@@ -127,9 +146,61 @@ public class EvaluationService {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
+			int locaTion = 0;
 			// TODO Write an implementation for this method declaration
-			return 0;
-		}
+			if( t instanceof String) {
+			    List<String> list = new ArrayList<>();
+			       list.addAll((Collection<? extends String>) getSortedList());
+			       String k = t.toString();
+			       int binarySearch = Integer.parseInt(t.toString());
+			       int min = 0;
+			       int max = getSortedList().size();
+
+			       
+			       int midValue = (max + min) / 2;
+
+			       while (min <= max) {
+
+			           if (Integer.parseInt(list.get(midValue)) == binarySearch) {
+			               return locaTion = midValue;
+
+			           } else if (Integer.parseInt(list.get(midValue)) > binarySearch) {
+			               midValue -= 1;
+			           } else if (Integer.parseInt(list.get(midValue)) < binarySearch) {
+			               midValue += 1;
+			           }
+			       }
+
+			       return locaTion;
+			       
+			     }
+			     else if( t instanceof Integer) {
+			         List<Integer> list = new ArrayList<>();
+			           list.addAll((Collection<? extends Integer>) getSortedList());
+			           String k = t.toString();
+			           int binarySearch = Integer.parseInt(t.toString());
+			           int min = 0;
+			           int max = getSortedList().size();
+
+			           
+			           int midValue = (max + min) / 2;
+
+			           while (min <= max) {
+
+			               if (list.get(midValue) == binarySearch) {
+			                   return locaTion = midValue;
+
+			               } else if (list.get(midValue) > binarySearch) {
+			                   midValue -= 1;
+			               } else if (list.get(midValue) < binarySearch) {
+			                   midValue += 1;
+			               }
+			           }
+
+			           return locaTion;
+			     }
+			return locaTion;
+			}
 
 		public BinarySearch(List<T> sortedList) {
 			super();
